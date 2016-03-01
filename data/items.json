@@ -1,0 +1,20 @@
+[
+  {
+    "name":"羽毛球",
+    "unit":"个",
+    "unit_price":1.0,
+    "code":"ITEM000001"
+  },
+  {
+    "name":"可口可乐",
+    "unit":"瓶",
+    "unit_price":3.0,
+    "code":"ITEM000005"
+  },
+  {
+    "name":"苹果",
+    "unit":"斤",
+    "unit_price":5.5,
+    "code":"ITEM000003"
+  }
+]
