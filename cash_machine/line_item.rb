@@ -30,7 +30,7 @@ module CashMachine
                               free_quantity = quantity / 3
                               @free = Free.new(item, free_quantity)
                               item.unit_price * (quantity - free_quantity)
-                            elsif nice_five_discount?
+                            elsif nine_five_discount?
                               total_price * 0.95
                             else
                               total_price
@@ -43,7 +43,7 @@ module CashMachine
 
     def to_s
       print_message = "名称：#{item.name}，数量：#{quantity}#{item.unit}，单价：#{item.unit_price}(元)，小计：#{cost_total_price}(元)"
-      if nice_five_discount?
+      if nine_five_discount?
         print_message += "，节省#{discounted_price}(元)"
       end
       print_message

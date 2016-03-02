@@ -43,7 +43,7 @@ describe ShoppingLineItem do
     end
 
     it "should work with nice_five discount" do
-      @item.discount_type = DiscountAble::DISCOUNT_TYPES[:nice_five_discount]
+      @item.discount_type = DiscountAble::DISCOUNT_TYPES[:nine_five_discount]
       quantity = 1
       discounted_price = @item.unit_price * quantity * 0.95
       line_item = ShoppingLineItem.new(@item, quantity)

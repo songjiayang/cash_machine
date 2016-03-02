@@ -4,8 +4,8 @@ module CashMachine
       self.quantity > 2 && DiscountTable.free_one_discount_items.include?(self.item.code)
     end
 
-    def nice_five_discount?
-      DiscountTable.nice_five_discount_items.include?(self.item.code)
+    def nine_five_discount?
+      DiscountTable.nine_five_discount_items.include?(self.item.code)
     end
   end
 end

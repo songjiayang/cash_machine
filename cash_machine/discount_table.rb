@@ -10,8 +10,8 @@ module CashMachine
         @discounts[:free_one] || []
       end
 
-      def nice_five_discount_items
-        @discounts[:nice_five_discount] || []
+      def nine_five_discount_items
+        @discounts[:nine_five_discount] || []
       end
 
       private
@@ -19,7 +19,7 @@ module CashMachine
       def default_discounts
         {
           free_one: [],
-          nice_five_discount: []
+          nine_five_discount: []
         }
       end
     end

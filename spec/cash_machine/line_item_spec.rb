@@ -33,7 +33,7 @@ describe CashMachine::LineItem do
     end
 
     it "free_one_discount? should be false" do
-      CashMachine::DiscountTable.refresh!({})
+      CashMachine::DiscountTable.refresh!
       @line_item.free_one_discount?.must_equal false
     end
 
@@ -48,14 +48,14 @@ describe CashMachine::LineItem do
       @line_item.free_one_discount?.must_equal true
     end
 
-    it "nice_five_discount? should be false" do
-      CashMachine::DiscountTable.refresh!({})
-      @line_item.nice_five_discount?.must_equal false
+    it "nine_five_discount? should be false" do
+      CashMachine::DiscountTable.refresh!
+      @line_item.nine_five_discount?.must_equal false
     end
 
-    it "nice_five_discount? should be true" do
-      CashMachine::DiscountTable.refresh!({nice_five_discount: [@line_item.item.code]})
-      @line_item.nice_five_discount?.must_equal true
+    it "nine_five_discount? should be true" do
+      CashMachine::DiscountTable.refresh!({nine_five_discount: [@line_item.item.code]})
+      @line_item.nine_five_discount?.must_equal true
     end
   end
 
@@ -95,8 +95,8 @@ describe CashMachine::LineItem do
       @line_item.free.to_s.must_equal "名称：#{@line_item.item.name}，数量：#{free_quantity}#{@line_item.item.unit}"
     end
 
-    it "should work with nice_five_discount" do
-      CashMachine::DiscountTable.refresh!({nice_five_discount: [@line_item.item.code]})
+    it "should work with nine_five_discount" do
+      CashMachine::DiscountTable.refresh!({nine_five_discount: [@line_item.item.code]})
       @line_item.cost_total_price.must_equal @line_item.item.unit_price * @line_item.quantity * 0.95
     end
   end
@@ -108,6 +108,7 @@ describe CashMachine::LineItem do
     end
 
     it "should work with no discount" do
+      CashMachine::DiscountTable.refresh!
       @line_item.discounted_price.must_equal 0
     end
 
@@ -117,8 +118,8 @@ describe CashMachine::LineItem do
       @line_item.discounted_price.must_equal 1
     end
 
-    it "should work with nice_five_discount" do
-      CashMachine::DiscountTable.refresh!({nice_five_discount: [@line_item.item.code]})
+    it "should work with nine_five_discount" do
+      CashMachine::DiscountTable.refresh!({nine_five_discount: [@line_item.item.code]})
       @line_item.quantity = 1
       @line_item.discounted_price.must_equal 0.05
     end
@@ -135,8 +136,8 @@ describe CashMachine::LineItem do
       @line_item.to_s.must_equal "名称：羽毛球，数量：1个，单价：1.0(元)，小计：1.0(元)"
     end
 
-    it "should work with nice_five_discount" do
-      CashMachine::DiscountTable.refresh!({nice_five_discount: [@line_item.item.code]})
+    it "should work with nine_five_discount" do
+      CashMachine::DiscountTable.refresh!({nine_five_discount: [@line_item.item.code]})
       @line_item.to_s.must_equal "名称：羽毛球，数量：1个，单价：1.0(元)，小计：0.95(元)，节省0.05(元)"
     end
   end
